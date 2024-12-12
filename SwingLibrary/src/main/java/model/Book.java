@@ -1,14 +1,33 @@
 package model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table (name = "book")
 public class Book {
-	String id;
+	@Id
+	@Column (name = "book_id")
+	Integer id;
+
+	@Column (name = "book_name")
 	String name;
+
+	@Column (name = "book_genre")
 	String genre;
+
+	@Column (name = "book_publisher")
 	String publisher;
+
+	@Column (name = "book_author")
 	String author;
+
+	@Column (name = "book_publicationdate")
 	String publicationDate;
 
-	public Book(String id, String name, String genre, String publisher, String author, String publicationDate) {
+	public Book(Integer id, String name, String genre, String publisher, String author, String publicationDate) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -18,11 +37,15 @@ public class Book {
 		this.publicationDate = publicationDate;
 	}
 
-	public String getId() {
+	public Book() {
+
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setIdBook(String id) {
+	public void setIdBook(Integer id) {
 		this.id = id;
 	}
 

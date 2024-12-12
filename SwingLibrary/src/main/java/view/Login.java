@@ -11,6 +11,9 @@ import java.awt.Font;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
 
 public class Login extends JFrame {
 
@@ -53,12 +56,12 @@ public class Login extends JFrame {
 		lblNewLabel.setBounds(194, 22, 124, 33);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Account:");
+		JLabel lblNewLabel_1 = new JLabel("Tài khoản:");
 		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		lblNewLabel_1.setBounds(47, 84, 76, 13);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Password:");
+		JLabel lblNewLabel_2 = new JLabel("Mật khẩu:");
 		lblNewLabel_2.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		lblNewLabel_2.setBounds(47, 155, 76, 13);
 		contentPane.add(lblNewLabel_2);
@@ -72,12 +75,18 @@ public class Login extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setBounds(67, 205, 85, 21);
+		JButton btnNewButton = new JButton("Đăng nhập");
+		btnNewButton.setBounds(67, 205, 85, 33);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(246, 205, 85, 21);
+		JButton btnNewButton_1 = new JButton("Hủy bỏ");
+		btnNewButton_1.setForeground(Color.BLACK);
+		btnNewButton_1.setBackground(Color.GREEN);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_1.setBounds(246, 205, 85, 33);
 		contentPane.add(btnNewButton_1);
 	}
 }
