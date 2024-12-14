@@ -15,6 +15,7 @@ import model.Employee;
 import model.I_Book;
 import util.HibernateUtil;
 
+@SuppressWarnings("rawtypes")
 public class Book_DAO implements I_Book{
 
 	@Override
