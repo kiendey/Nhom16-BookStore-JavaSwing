@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "genre")
+@Table(name = "genre")//Thể loại
 public class Genre {
 	@Id
 	@Column(name = "genre_id")

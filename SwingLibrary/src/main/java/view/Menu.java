@@ -224,7 +224,7 @@ public class Menu extends JFrame {
 		lblNewLabel_3_1.setForeground(Color.WHITE);
 		lblNewLabel_3_1.setFont(new Font("Segoe UI", Font.BOLD, 26));
 		
-		JLabel lblNewLabel_2_2 = new JLabel("Hộp thư");
+		JLabel lblNewLabel_2_2 = new JLabel("Hóa đơn");
 		lblNewLabel_2_2.setBounds(106, 84, 96, 30);
 		panel_2_1_1.add(lblNewLabel_2_2);
 		lblNewLabel_2_2.setForeground(Color.WHITE);

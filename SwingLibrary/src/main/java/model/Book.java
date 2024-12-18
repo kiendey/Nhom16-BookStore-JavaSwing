@@ -19,13 +19,13 @@ public class Book {
 	String genre;
 
 	@Column (name = "book_publisher")
-	String publisher;
+	String publisher;// nhà xuất bản
 
 	@Column (name = "book_author")
 	String author;
 
 	@Column (name = "book_publicationdate")
-	String publicationDate;
+	String publicationDate;//năm xuất bản
 
 	public Book(Integer id, String name, String genre, String publisher, String author, String publicationDate) {
 		super();

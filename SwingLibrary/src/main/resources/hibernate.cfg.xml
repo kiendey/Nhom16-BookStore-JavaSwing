@@ -16,5 +16,8 @@
         <mapping class="model.Employee"/>
         <mapping class="model.Book"/>
         <mapping class="model.Genre"/>
+        <mapping class="model.PurchaseInvoice"/>
+        <mapping class="model.SalesInvoice"/>
+        <mapping class="model.Statistic"/>
     </session-factory>
 </hibernate-configuration>
