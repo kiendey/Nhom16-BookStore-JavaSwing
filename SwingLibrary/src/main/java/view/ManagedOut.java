@@ -9,6 +9,8 @@ import java.awt.SystemColor;
 import java.util.List;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
@@ -266,6 +268,7 @@ public class ManagedOut extends JFrame {
 		JButton btnNewButton_1 = new JButton("Thêm");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(rootPane, "Thêm hóa đơn thành công!");
 			}
 		});
 		btnNewButton_1.setBackground(Color.LIGHT_GRAY);
@@ -274,12 +277,22 @@ public class ManagedOut extends JFrame {
 		panel_2.add(btnNewButton_1);
 
 		JButton btnNewButton_1_1 = new JButton("Sửa");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(rootPane, "Sửa hóa đơn thành công!");
+			}
+		});
 		btnNewButton_1_1.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton_1_1.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_1_1.setBounds(301, 260, 92, 36);
 		panel_2.add(btnNewButton_1_1);
 
 		JButton btnNewButton_1_2 = new JButton("Xóa");
+		btnNewButton_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(rootPane, "Xóa hóa đơn thành công!");
+			}
+		});
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton_1_2.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_1_2.setBounds(511, 260, 92, 36);

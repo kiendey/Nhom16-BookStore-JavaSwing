@@ -9,6 +9,8 @@ import java.awt.SystemColor;
 import java.util.List;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -191,7 +193,9 @@ public class ManagedBook extends JFrame {
 		DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 		for (Book b : listB) {
 			tableModel.addRow(new Object[] { b.getId(),b.getName(), b.getGenre(), b.getAuthor(), b.getPublisher(), b.getPublicationDate()});
-	}
+		}
+		//Book b = new Book(1, "Conan", "Trinh thám", "kim Đồng", "Aoyama Gosho", "14-12-2004");
+		//tableModel.addRow(new Object[] {b.getId(), b.getName(), b.getGenre(), b.getAuthor(), b.getPublisher(),b.getPublicationDate()});
 		//Chỉnh độ rộng cột
 		TableColumn column0 = table.getColumnModel().getColumn(0); column0.setPreferredWidth(40);
 		TableColumn column1 = table.getColumnModel().getColumn(1); column1.setPreferredWidth(100);
@@ -263,23 +267,34 @@ public class ManagedBook extends JFrame {
 		JButton btnNewButton_1 = new JButton("Thêm");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(rootPane, "Thêm sách thành công!");
 			}
 		});
 		btnNewButton_1.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnNewButton_1.setBounds(109, 260, 92, 36);
+		btnNewButton_1.setBounds(57, 260, 92, 36);
 		panel_2.add(btnNewButton_1);
 		
 		JButton btnNewButton_1_1 = new JButton("Sửa");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(rootPane, "Sửa sách thành công!");
+			}
+		});
 		btnNewButton_1_1.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton_1_1.setBackground(Color.LIGHT_GRAY);
-		btnNewButton_1_1.setBounds(301, 260, 92, 36);
+		btnNewButton_1_1.setBounds(226, 260, 92, 36);
 		panel_2.add(btnNewButton_1_1);
 		
 		JButton btnNewButton_1_2 = new JButton("Xóa");
+		btnNewButton_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(rootPane, "Xóa sách thành công!");
+			}
+		});
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton_1_2.setBackground(Color.LIGHT_GRAY);
-		btnNewButton_1_2.setBounds(511, 260, 92, 36);
+		btnNewButton_1_2.setBounds(408, 260, 92, 36);
 		panel_2.add(btnNewButton_1_2);
 		
 		JLabel lblNewLabel_5 = new JLabel("Nhà xuất bản");
@@ -297,6 +312,17 @@ public class ManagedBook extends JFrame {
 		comboBox.setBounds(110, 188, 143, 40);
 		
 		panel_2.add(comboBox);
+		
+		JButton btnNewButton_1_1_1 = new JButton("Tìm kiếm");
+		btnNewButton_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(rootPane, "Tìm thấy kết quả!");
+			}
+		});
+		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnNewButton_1_1_1.setBackground(Color.LIGHT_GRAY);
+		btnNewButton_1_1_1.setBounds(554, 260, 117, 36);
+		panel_2.add(btnNewButton_1_1_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("Danh sách cuốn sách:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 17));

@@ -9,6 +9,8 @@ import java.awt.SystemColor;
 import java.util.List;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
@@ -43,6 +45,7 @@ public class ManagedEmployee extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	private JTextField textField_5;
 
 	/**
 	 * Launch the application.
@@ -184,15 +187,18 @@ public class ManagedEmployee extends JFrame {
 				new Object[][] {
 				},
 				new String[] {
-						"Mã NV", "Tên NV", "Tuổi tác", "Địa chỉ", "Số điện thoại"
+						"Mã NV", "Tên NV", "Tuổi tác", "Địa chỉ", "Số điện thoại", "Email"
 				}
 		));
+//		Employee e = new Employee(1, "Hương", 20, "Nam Định", "01234", "thuhuong@gmail.com");
 		DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+//		tableModel.addRow(new Object[] {e.getId(), e.getName(), e.getAge(), e.getAddress(), e.getPhoneNumber(), e.getEmail()});
 		for (Employee e : listEmployee) {
-			tableModel.addRow(new Object[] { e.getId(),e.getName(), e.getAge(), e.getAddress(), e.getPhoneNumber()});
+			tableModel.addRow(new Object[] { e.getId(),e.getName(), e.getAge(), e.getAddress(), e.getPhoneNumber(), e.getEmail()});
 		}
 		TableColumn column0 = table.getColumnModel().getColumn(0); column0.setPreferredWidth(40);
 		TableColumn column1 = table.getColumnModel().getColumn(1); column1.setPreferredWidth(100);
+		TableColumn column5 = table.getColumnModel().getColumn(5); column5.setPreferredWidth(150);
 
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(240, 48, 693, 191);
@@ -240,45 +246,77 @@ public class ManagedEmployee extends JFrame {
 
 		JLabel lblNewLabel_4_3 = new JLabel("Địa chỉ");
 		lblNewLabel_4_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_4_3.setBounds(351, 67, 70, 36);
+		lblNewLabel_4_3.setBounds(351, 52, 70, 36);
 		panel_2.add(lblNewLabel_4_3);
 
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(473, 71, 143, 36);
+		textField_3.setBounds(473, 56, 143, 36);
 		panel_2.add(textField_3);
 
 		JLabel lblNewLabel_4_4 = new JLabel("Số điện thoại");
 		lblNewLabel_4_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_4_4.setBounds(351, 161, 137, 36);
+		lblNewLabel_4_4.setBounds(351, 122, 137, 36);
 		panel_2.add(lblNewLabel_4_4);
 
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
-		textField_4.setBounds(473, 165, 183, 36);
+		textField_4.setBounds(473, 126, 183, 36);
 		panel_2.add(textField_4);
 
 		JButton btnNewButton_1 = new JButton("Thêm");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(rootPane, "Thêm nhân viên thành công!");
 			}
 		});
 		btnNewButton_1.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnNewButton_1.setBounds(109, 260, 92, 36);
+		btnNewButton_1.setBounds(85, 260, 92, 36);
 		panel_2.add(btnNewButton_1);
 
 		JButton btnNewButton_1_1 = new JButton("Sửa");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(rootPane, "Sửa nhân viên thành công!");
+			}
+		});
 		btnNewButton_1_1.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton_1_1.setBackground(Color.LIGHT_GRAY);
-		btnNewButton_1_1.setBounds(301, 260, 92, 36);
+		btnNewButton_1_1.setBounds(264, 260, 92, 36);
 		panel_2.add(btnNewButton_1_1);
 
 		JButton btnNewButton_1_2 = new JButton("Xóa");
+		btnNewButton_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(rootPane, "Xóa nhân viên thành công!");
+			}
+		});
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton_1_2.setBackground(Color.LIGHT_GRAY);
-		btnNewButton_1_2.setBounds(511, 260, 92, 36);
+		btnNewButton_1_2.setBounds(419, 260, 92, 36);
 		panel_2.add(btnNewButton_1_2);
+		
+		JButton btnNewButton_1_2_1 = new JButton("Tìm kiếm");
+		btnNewButton_1_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(rootPane, "Tìm thấy kết quả!");
+			}
+		});
+		btnNewButton_1_2_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnNewButton_1_2_1.setBackground(Color.LIGHT_GRAY);
+		btnNewButton_1_2_1.setBounds(556, 260, 118, 36);
+		panel_2.add(btnNewButton_1_2_1);
+		
+		JLabel lblNewLabel_4_4_1 = new JLabel("Email");
+		lblNewLabel_4_4_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_4_4_1.setBounds(351, 188, 137, 36);
+		panel_2.add(lblNewLabel_4_4_1);
+		
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
+		textField_5.setBounds(473, 192, 183, 36);
+		panel_2.add(textField_5);
 
 		JLabel lblNewLabel_3 = new JLabel("Danh sách nhân viên");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 17));

@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JPasswordField;
@@ -42,6 +44,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 475, 300);
 		contentPane = new JPanel();
@@ -76,6 +79,11 @@ public class Login extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Đăng nhập");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(rootPane, "Đăng nhập hành công với quyền Admin!");
+			}
+		});
 		btnNewButton.setFont(new Font("Segoe UI", Font.BOLD, 10));
 		btnNewButton.setBackground(Color.GREEN);
 		btnNewButton.setBounds(132, 205, 92, 33);
@@ -91,5 +99,9 @@ public class Login extends JFrame {
 		});
 		btnNewButton_1.setBounds(255, 205, 85, 33);
 		contentPane.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setBounds(391, 240, 45, 13);
+		contentPane.add(lblNewLabel_3);
 	}
 }
