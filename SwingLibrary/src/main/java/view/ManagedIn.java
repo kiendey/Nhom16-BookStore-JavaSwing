@@ -42,13 +42,13 @@ public class ManagedIn extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField textFieldMaDon;
+	private JTextField textFieldNgayNhap;
+	private JTextField textFieldTenNV;
+	private JTextField textFieldTenSach;
+	private JTextField textFieldSoLuong;
+	private JTextField textFieldGiaNhap;
+	private JTextField textFieldTong;
 
 	/**
 	 * Launch the application.
@@ -199,7 +199,8 @@ public class ManagedIn extends JFrame {
 		}
 		TableColumn column0 = table.getColumnModel().getColumn(0); column0.setPreferredWidth(40);
 		TableColumn column1 = table.getColumnModel().getColumn(1); column1.setPreferredWidth(100);
-		TableColumn column2 = table.getColumnModel().getColumn(3); column2.setPreferredWidth(100);
+		TableColumn column3 = table.getColumnModel().getColumn(2); column3.setPreferredWidth(100);
+		TableColumn column2 = table.getColumnModel().getColumn(3); column2.setPreferredWidth(120);
 
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(240, 48, 693, 191);
@@ -220,55 +221,87 @@ public class ManagedIn extends JFrame {
 		lblNewLabel_4.setBounds(20, 52, 70, 36);
 		panel_2.add(lblNewLabel_4);
 
-		textField = new JTextField();
-		textField.setBounds(110, 56, 143, 36);
-		panel_2.add(textField);
-		textField.setColumns(10);
+		textFieldMaDon = new JTextField();
+		textFieldMaDon.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldMaDon.setBounds(110, 56, 143, 36);
+		panel_2.add(textFieldMaDon);
+		textFieldMaDon.setColumns(10);
 
 		JLabel lblNewLabel_4_1 = new JLabel("Ngày nhập");
 		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_4_1.setBounds(20, 122, 92, 36);
 		panel_2.add(lblNewLabel_4_1);
 
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(110, 126, 143, 36);
-		panel_2.add(textField_1);
+		textFieldNgayNhap = new JTextField();
+		textFieldNgayNhap.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldNgayNhap.setColumns(10);
+		textFieldNgayNhap.setBounds(110, 126, 143, 36);
+		panel_2.add(textFieldNgayNhap);
 
 		JLabel lblNewLabel_4_2 = new JLabel("Tên NV");
 		lblNewLabel_4_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_4_2.setBounds(20, 188, 109, 36);
 		panel_2.add(lblNewLabel_4_2);
 
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(110, 192, 143, 36);
-		panel_2.add(textField_2);
+		textFieldTenNV = new JTextField();
+		textFieldTenNV.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldTenNV.setColumns(10);
+		textFieldTenNV.setBounds(110, 192, 143, 36);
+		panel_2.add(textFieldTenNV);
 
 		JLabel lblNewLabel_4_3 = new JLabel("Tên sách");
 		lblNewLabel_4_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_4_3.setBounds(358, 11, 92, 36);
 		panel_2.add(lblNewLabel_4_3);
 
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(473, 15, 143, 36);
-		panel_2.add(textField_3);
+		textFieldTenSach = new JTextField();
+		textFieldTenSach.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldTenSach.setColumns(10);
+		textFieldTenSach.setBounds(473, 15, 143, 36);
+		panel_2.add(textFieldTenSach);
 
 		JLabel lblNewLabel_4_4 = new JLabel("Số lượng");
 		lblNewLabel_4_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_4_4.setBounds(358, 68, 137, 36);
 		panel_2.add(lblNewLabel_4_4);
 
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(473, 72, 143, 36);
-		panel_2.add(textField_4);
+		textFieldSoLuong = new JTextField();
+		textFieldSoLuong.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldSoLuong.setColumns(10);
+		textFieldSoLuong.setBounds(473, 72, 143, 36);
+		panel_2.add(textFieldSoLuong);
 
 		JButton btnNewButton_1 = new JButton("Thêm");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(rootPane, "Thêm hóa đơn thành công!");
+				PurchaseInvoice p = new PurchaseInvoice();
+				
+				try {
+					p.setId(Integer.parseInt(textFieldMaDon.getText()));
+					p.setImportdate(textFieldNgayNhap.getText());
+					p.setEmployeeName(textFieldTenNV.getText());
+					p.setBookName(textFieldTenSach.getText());
+					p.setQuantity(Integer.parseInt(textFieldSoLuong.getText()));
+					p.setPrice(Float.parseFloat(textFieldGiaNhap.getText()));
+					p.setAmount(Float.parseFloat(textFieldTong.getText()));
+					//CSDL
+					p_DAO.insert(p);
+					//Add trong table()
+					tableModel.addRow(new Object[] { p.getId(), p.getImportdate(), p.getEmployeeName(), p.getBookName(),
+							p.getQuantity(), p.getPrice(), p.getAmount() });
+					JOptionPane.showMessageDialog(rootPane, "Thêm thành công!");
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(rootPane, "Nhập sai định dạng!");
+				} finally {
+					//Reset về empty
+					textFieldMaDon.setText("");
+					textFieldNgayNhap.setText("");
+					textFieldTenNV.setText("");
+					textFieldTenSach.setText("");
+					textFieldSoLuong.setText("");
+					textFieldGiaNhap.setText("");
+					textFieldTong.setText("");
+				}
 			}
 		});
 		btnNewButton_1.setBackground(Color.LIGHT_GRAY);
@@ -279,8 +312,45 @@ public class ManagedIn extends JFrame {
 		JButton btnNewButton_1_1 = new JButton("Sửa");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(rootPane, "Sửa hóa đơn thành công!");
+				PurchaseInvoice p = new PurchaseInvoice();
+				try {
+					p.setId(Integer.parseInt(textFieldMaDon.getText()));
+					p.setImportdate(textFieldNgayNhap.getText());
+					p.setEmployeeName(textFieldTenNV.getText());
+					p.setBookName(textFieldTenSach.getText());
+					p.setQuantity(Integer.parseInt(textFieldSoLuong.getText()));
+					p.setPrice(Float.parseFloat(textFieldGiaNhap.getText()));
+					p.setAmount(Float.parseFloat(textFieldTong.getText()));
+					//CSDL
+					p_DAO.update(p);
+					//Sửa Table
+					for (int i = 0; i < tableModel.getRowCount(); i++) {
+						if (tableModel.getValueAt(i, 0).equals(p.getId())) {//Sử dung id để câp nhât
+							tableModel.setValueAt(textFieldMaDon.getText(), i, 0);
+							tableModel.setValueAt(textFieldNgayNhap.getText(), i, 1);
+							tableModel.setValueAt(textFieldTenNV.getText(), i, 2);
+							tableModel.setValueAt(textFieldTenSach.getText(), i, 3);
+							tableModel.setValueAt(textFieldSoLuong.getText(), i, 4);
+							tableModel.setValueAt(textFieldGiaNhap.getText()+".0", i, 5);
+							tableModel.setValueAt(textFieldTong.getText()+".0", i, 6);
+							break;
+						}
+					}
+					JOptionPane.showMessageDialog(rootPane, "Sửa thành công!");
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(rootPane, "Nhập sai định dạng!");
+				} finally {
+					//Reset về empty
+					textFieldMaDon.setText("");
+					textFieldNgayNhap.setText("");
+					textFieldTenNV.setText("");
+					textFieldTenSach.setText("");
+					textFieldSoLuong.setText("");
+					textFieldGiaNhap.setText("");
+					textFieldTong.setText("");
+				}
 			}
+				
 		});
 		btnNewButton_1_1.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton_1_1.setBackground(Color.LIGHT_GRAY);
@@ -290,9 +360,28 @@ public class ManagedIn extends JFrame {
 		JButton btnNewButton_1_2 = new JButton("Xóa");
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(rootPane, "Xóa hóa đơn thành công!");
-			}
-		});
+				PurchaseInvoice p = new PurchaseInvoice();
+				try {
+					p.setId(Integer.parseInt(textFieldMaDon.getText()));
+
+					// CSDL
+					p_DAO.delete(p.getId());
+					// Table
+					for (int i = 0; i < tableModel.getRowCount(); i++) {
+						if (tableModel.getValueAt(i, 0).equals(p.getId())) {//Xóa theo ID
+							tableModel.removeRow(i);
+							break;
+						}
+					}
+					JOptionPane.showMessageDialog(rootPane, "Xóa thành công!");
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(rootPane, "Nhập sai định dạng!");
+				} finally {
+					//Reset về empty
+					textFieldMaDon.setText("");
+				}
+				
+			}});
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton_1_2.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_1_2.setBounds(511, 260, 92, 36);
@@ -303,15 +392,17 @@ public class ManagedIn extends JFrame {
 		lblNewLabel_4_4_1.setBounds(358, 126, 137, 36);
 		panel_2.add(lblNewLabel_4_4_1);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(473, 126, 143, 36);
-		panel_2.add(textField_5);
+		textFieldGiaNhap = new JTextField();
+		textFieldGiaNhap.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldGiaNhap.setColumns(10);
+		textFieldGiaNhap.setBounds(473, 126, 143, 36);
+		panel_2.add(textFieldGiaNhap);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(473, 192, 143, 36);
-		panel_2.add(textField_6);
+		textFieldTong = new JTextField();
+		textFieldTong.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldTong.setColumns(10);
+		textFieldTong.setBounds(473, 192, 143, 36);
+		panel_2.add(textFieldTong);
 		
 		JLabel lblNewLabel_4_4_1_1 = new JLabel("Tổng tiền");
 		lblNewLabel_4_4_1_1.setFont(new Font("Tahoma", Font.PLAIN, 18));

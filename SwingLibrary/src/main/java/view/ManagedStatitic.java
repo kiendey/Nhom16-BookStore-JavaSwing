@@ -42,10 +42,10 @@ public class ManagedStatitic extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_6;
+	private JTextField textFieldMaTK;
+	private JTextField textFieldNgayTK;
+	private JTextField textFieldTenSach;
+	private JTextField textFieldSLTon;
 
 	/**
 	 * Launch the application.
@@ -216,35 +216,59 @@ public class ManagedStatitic extends JFrame {
 		lblNewLabel_4.setBounds(20, 56, 70, 36);
 		panel_2.add(lblNewLabel_4);
 
-		textField = new JTextField();
-		textField.setBounds(110, 56, 143, 36);
-		panel_2.add(textField);
-		textField.setColumns(10);
+		textFieldMaTK = new JTextField();
+		textFieldMaTK.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldMaTK.setBounds(110, 56, 143, 36);
+		panel_2.add(textFieldMaTK);
+		textFieldMaTK.setColumns(10);
 
 		JLabel lblNewLabel_4_1 = new JLabel("Ngày TK");
 		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_4_1.setBounds(20, 154, 92, 36);
 		panel_2.add(lblNewLabel_4_1);
 
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(110, 158, 143, 36);
-		panel_2.add(textField_1);
+		textFieldNgayTK = new JTextField();
+		textFieldNgayTK.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldNgayTK.setColumns(10);
+		textFieldNgayTK.setBounds(110, 158, 143, 36);
+		panel_2.add(textFieldNgayTK);
 
 		JLabel lblNewLabel_4_2 = new JLabel("Tên sách");
 		lblNewLabel_4_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_4_2.setBounds(362, 56, 109, 36);
 		panel_2.add(lblNewLabel_4_2);
 
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(469, 60, 143, 36);
-		panel_2.add(textField_2);
+		textFieldTenSach = new JTextField();
+		textFieldTenSach.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldTenSach.setColumns(10);
+		textFieldTenSach.setBounds(481, 58, 143, 36);
+		panel_2.add(textFieldTenSach);
 
 		JButton btnNewButton_1 = new JButton("Thêm");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(rootPane, "Thêm thống kê thành công!");
+				Statistic s = new Statistic();
+				
+				try {
+					s.setId(Integer.parseInt(textFieldMaTK.getText()));
+					s.setDate(textFieldNgayTK.getText());
+					s.setBookName(textFieldTenSach.getText());
+					s.setInventoryQuantity(Integer.parseInt(textFieldSLTon.getText()));
+					//CSDL
+					s_DAO.insert(s);
+					//Table
+					//Add trong table()
+					tableModel
+							.addRow(new Object[] { s.getId(), s.getDate(), s.getBookName(), s.getInventoryQuantity() });
+					JOptionPane.showMessageDialog(rootPane, "Thêm thống kê thành công!");
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(rootPane, "Nhập sai định dạng!");
+				} finally {
+					textFieldMaTK.setText("");
+					textFieldNgayTK.setText("");
+					textFieldTenSach.setText("");
+					textFieldSLTon.setText("");
+				}
 			}
 		});
 		btnNewButton_1.setBackground(Color.LIGHT_GRAY);
@@ -255,7 +279,35 @@ public class ManagedStatitic extends JFrame {
 		JButton btnNewButton_1_1 = new JButton("Sửa");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(rootPane, "Sửa thống kê thành công!");
+				Statistic s = new Statistic();
+				try {
+					s.setId(Integer.parseInt(textFieldMaTK.getText()));
+					s.setDate(textFieldNgayTK.getText());
+					s.setBookName(textFieldTenSach.getText());
+					s.setInventoryQuantity(Integer.parseInt(textFieldSLTon.getText()));
+					//CSDL
+					s_DAO.update(s);
+					
+					//Sửa Table
+					for (int i = 0; i < tableModel.getRowCount(); i++) {
+						if (tableModel.getValueAt(i, 0).equals(s.getId())) {//Sử dung id để câp nhât
+							tableModel.setValueAt(textFieldMaTK.getText(), i, 0);
+							tableModel.setValueAt(textFieldNgayTK.getText(), i, 1);
+							tableModel.setValueAt(textFieldTenSach.getText(), i, 2);
+							tableModel.setValueAt(textFieldSLTon.getText(), i, 3);
+							break;
+						}
+					}
+					JOptionPane.showMessageDialog(rootPane, "Sửa thống kê thành công!");
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(rootPane, "Nhập sai định dạng!");
+				} finally {
+					textFieldMaTK.setText("");
+					textFieldNgayTK.setText("");
+					textFieldTenSach.setText("");
+					textFieldSLTon.setText("");
+				}
+				
 			}
 		});
 		btnNewButton_1_1.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -266,18 +318,36 @@ public class ManagedStatitic extends JFrame {
 		JButton btnNewButton_1_2 = new JButton("Xóa");
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(rootPane, "Xóa thống kê thành công!");
+				Statistic s = new Statistic();
+				try {
+					s.setId(Integer.parseInt(textFieldMaTK.getText()));
+
+					//CSDL
+					s_DAO.delete(s.getId());
+					// Table
+					for (int i = 0; i < tableModel.getRowCount(); i++) {
+						if (tableModel.getValueAt(i, 0).equals(s.getId())) {//Xóa theo ID
+							tableModel.removeRow(i);
+							break;
+						}
+					}
+					JOptionPane.showMessageDialog(rootPane, "Xóa thống kê thành công!");
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(rootPane, "Nhập sai định dạng!");
+				} finally {
+					textFieldMaTK.setText("");	
 			}
-		});
+		}});
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton_1_2.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_1_2.setBounds(511, 260, 92, 36);
 		panel_2.add(btnNewButton_1_2);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(486, 154, 143, 36);
-		panel_2.add(textField_6);
+		textFieldSLTon = new JTextField();
+		textFieldSLTon.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldSLTon.setColumns(10);
+		textFieldSLTon.setBounds(486, 154, 143, 36);
+		panel_2.add(textFieldSLTon);
 		
 		JLabel lblNewLabel_4_4_1_1 = new JLabel("Số lượng tồn");
 		lblNewLabel_4_4_1_1.setFont(new Font("Tahoma", Font.PLAIN, 18));

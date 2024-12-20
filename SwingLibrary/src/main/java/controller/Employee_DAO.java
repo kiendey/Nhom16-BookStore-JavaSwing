@@ -106,9 +106,9 @@ public class Employee_DAO implements I_Employee {
         if (sessionFactory != null) {
             try (Session session = sessionFactory.openSession()) {
                 Transaction transaction = session.beginTransaction();
-                Employee b = (Employee) session.get(Employee.class, id);
-                if (b!= null) {
-	                session.remove(b);
+                Employee e = (Employee) session.get(Employee.class, id);
+                if (e!= null) {
+	                session.remove(e);
 	                transaction.commit();
 	                return true;
                 }

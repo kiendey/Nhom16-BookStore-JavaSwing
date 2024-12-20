@@ -32,6 +32,6 @@ public class Test {
 //        }
         Book b2 = new Book(8, "Thiên địch", "Giáo dục", "Giáo dục", "H.Metara", "14-05-2004");
         String name = "Thủy thủ trăng";
-        System.out.println(bookDao.selectByName(name));
+        employeeDao.delete(3);
     }
 }

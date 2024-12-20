@@ -201,9 +201,9 @@ public class ManagedBook extends JFrame {
 		// b.getAuthor(), b.getPublisher(),b.getPublicationDate()});
 		// Chỉnh độ rộng cột
 		TableColumn column0 = table.getColumnModel().getColumn(0);
-		column0.setPreferredWidth(40);
+		column0.setPreferredWidth(30);
 		TableColumn column1 = table.getColumnModel().getColumn(1);
-		column1.setPreferredWidth(100);
+		column1.setPreferredWidth(120);
 
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(240, 48, 693, 191);
@@ -291,11 +291,11 @@ public class ManagedBook extends JFrame {
 					
 					//Add trong CSDL
 					this.addBook(b);
-					JOptionPane.showMessageDialog(rootPane, "Thêm sách thành công!");
 					
 					//Add trong table()
 					tableModel.addRow(new Object[] { b.getId(), b.getName(), b.getGenre(), b.getAuthor(),
 							b.getPublisher(), b.getPublicationDate() });
+					JOptionPane.showMessageDialog(rootPane, "Thêm sách thành công!");
 				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(rootPane, "Nhập định dạng sai!");
 				} finally {
@@ -427,31 +427,24 @@ public class ManagedBook extends JFrame {
 		JButton btnNewButton_1_1_1 = new JButton("Tìm kiếm");
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Book b = new Book();
-				b.setIdBook(Integer.parseInt(textFieldMaSach.getText()));
-				b.setName(textFieldTimKiem.getText());
-				b.setGenre((String) comboBoxTheLoai.getSelectedItem());
-				b.setAuthor(textFieldTacGia.getText());
-				b.setPublisher(textFieldNXB.getText());
-				b.setPublicationDate(textFieldNgayXB.getText());
-				// CSDL
-				// this.findBook(b);
 				// Table
-				String searchText = b.getName();
+				String searchText = textFieldTimKiem.getText();
 				List<Object[]> resultData = new ArrayList<>();
 				String[] columnNames = { "Mã sách", "Tên sách", "Thể loại", "Tác giả", "Nhà xuất bản",
 						"Ngày xuất bản" };
-				// Tìm kiếm sản phẩm theo tên và cập nhật mô hình dữ liệu
-				for (Book b1 : listB) {
-
-					if (b1.getName().toLowerCase().contains(searchText.toLowerCase())) {
-						resultData.add(new Object[] { b.getId(), b.getName(), b.getGenre(), b.getAuthor(),
-								b.getPublisher(), b.getPublicationDate() });
+				// Tìm kiếm sản phẩm theo tên
+				List<Book> list = (List<Book>) b_DAO.selectByName(searchText);
+				if (list.size() > 0) {
+					for (Book b1 : list) {
+						resultData.add(new Object[] { b1.getId(), b1.getName(), b1.getGenre(), b1.getAuthor(),
+								b1.getPublisher(), b1.getPublicationDate() });
 					}
-				} // Cập nhật mô hình dữ liệu với kết quả tìm kiếm
-				DefaultTableModel newModel = new DefaultTableModel(resultData.toArray(new Object[0][0]), columnNames);
-				table.setModel(newModel);
-				JOptionPane.showMessageDialog(rootPane, "Tìm thấy kết quả!");
+					DefaultTableModel newModel = new DefaultTableModel(resultData.toArray(new Object[0][0]),
+							columnNames);
+					table.setModel(newModel);
+					JOptionPane.showMessageDialog(rootPane, "Tìm thấy kết quả!");
+				} else
+					JOptionPane.showMessageDialog(rootPane, "Không tìm thấy kết quả!");
 			}
 
 			private void findBook(Book b) {
