@@ -11,6 +11,7 @@ import util.HibernateUtil;
 
 import java.util.List;
 
+@SuppressWarnings("rawtypes")
 public class Employee_DAO implements I_Employee {
     @Override
     public List<?> selectAll() {
@@ -50,8 +51,20 @@ public class Employee_DAO implements I_Employee {
     }
 
     @Override
-    public Employee selectByName(String name) {
-        return null;
+    public List<?> selectByName(String name) {
+    	try {
+            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+            if (sessionFactory != null) {
+                Session session = sessionFactory.openSession();
+                Transaction transaction = session.beginTransaction();
+                List<Employee> list = session.createQuery("FROM Employee WHERE name LIKE :name", Employee.class) .setParameter("name", "%" + name + "%") .getResultList();
+                transaction.commit();
+                return list;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+       return null;
     }
 
     @Override
@@ -73,11 +86,36 @@ public class Employee_DAO implements I_Employee {
 
     @Override
     public boolean update(Employee employee) {
-        return false;
+    	SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        if (sessionFactory != null) {
+            try (Session session = sessionFactory.openSession()) {
+                Transaction transaction = session.beginTransaction();
+                session.merge(employee);
+                transaction.commit();
+                return true;
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+		return false;
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+    	SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        if (sessionFactory != null) {
+            try (Session session = sessionFactory.openSession()) {
+                Transaction transaction = session.beginTransaction();
+                Employee b = (Employee) session.get(Employee.class, id);
+                if (b!= null) {
+	                session.remove(b);
+	                transaction.commit();
+	                return true;
+                }
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+		return false;
     }
 }

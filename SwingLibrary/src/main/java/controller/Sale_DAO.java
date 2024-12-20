@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import jakarta.persistence.Query;
+import model.Book;
 import model.I_Sale;
 import model.PurchaseInvoice;
 import model.SalesInvoice;
@@ -75,13 +76,36 @@ public class Sale_DAO implements I_Sale{
 
 	@Override
 	public boolean update(SalesInvoice salesInvoice) {
-		// TODO Auto-generated method stub
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        if (sessionFactory != null) {
+            try (Session session = sessionFactory.openSession()) {
+                Transaction transaction = session.beginTransaction();
+                session.merge(salesInvoice);
+                transaction.commit();
+                return true;
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
 		return false;
 	}
 
 	@Override
 	public boolean delete(int id) {
-		// TODO Auto-generated method stub
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        if (sessionFactory != null) {
+            try (Session session = sessionFactory.openSession()) {
+                Transaction transaction = session.beginTransaction();
+                SalesInvoice b = (SalesInvoice) session.get(SalesInvoice.class, id);
+                if (b!= null) {
+	                session.remove(b);
+	                transaction.commit();
+	                return true;
+                }
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
 		return false;
 	}
 }

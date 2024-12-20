@@ -25,10 +25,13 @@ public class Test {
         List<Genre> list =  genreDao.selectAll();
         PurchaseInvoice purchaseInvoice = new PurchaseInvoice(1, "17-12-2009", "Trung Kiên", "Bạch dạ hành", 10, 50000, 500000);
         Purchase_DAO purchaseDao = new Purchase_DAO();
-        purchaseDao.insert(purchaseInvoice);
-        List<PurchaseInvoice> l= (List<PurchaseInvoice>) purchaseDao.selectAll();
-        for (PurchaseInvoice p: l) {
-            System.out.println(p.getId());
-        }
+//        purchaseDao.insert(purchaseInvoice);
+//        List<PurchaseInvoice> l= (List<PurchaseInvoice>) purchaseDao.selectAll();
+//        for (PurchaseInvoice p: l) {
+//            System.out.println(p.getId());
+//        }
+        Book b2 = new Book(8, "Thiên địch", "Giáo dục", "Giáo dục", "H.Metara", "14-05-2004");
+        String name = "Thủy thủ trăng";
+        System.out.println(bookDao.selectByName(name));
     }
 }

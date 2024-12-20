@@ -180,25 +180,26 @@ public class ManagedEmployee extends JFrame {
 		List<Employee> listEmployee = (List<Employee>) e_DAO.selectAll();
 		table = new JTable();
 		table.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		table.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 255)));
+		table.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "",
+				TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 255)));
 		table.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 16));
 		table.setRowHeight(26);
-		table.setModel(new DefaultTableModel(
-				new Object[][] {
-				},
-				new String[] {
-						"Mã NV", "Tên NV", "Tuổi tác", "Địa chỉ", "Số điện thoại", "Email"
-				}
-		));
+		table.setModel(new DefaultTableModel(new Object[][] {},
+				new String[] { "Mã NV", "Tên NV", "Tuổi tác", "Địa chỉ", "Số điện thoại", "Email" }));
 //		Employee e = new Employee(1, "Hương", 20, "Nam Định", "01234", "thuhuong@gmail.com");
 		DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 //		tableModel.addRow(new Object[] {e.getId(), e.getName(), e.getAge(), e.getAddress(), e.getPhoneNumber(), e.getEmail()});
 		for (Employee e : listEmployee) {
-			tableModel.addRow(new Object[] { e.getId(),e.getName(), e.getAge(), e.getAddress(), e.getPhoneNumber(), e.getEmail()});
+			tableModel.addRow(new Object[] { e.getId(), e.getName(), e.getAge(), e.getAddress(), e.getPhoneNumber(),
+					e.getEmail() });
 		}
-		TableColumn column0 = table.getColumnModel().getColumn(0); column0.setPreferredWidth(40);
-		TableColumn column1 = table.getColumnModel().getColumn(1); column1.setPreferredWidth(100);
-		TableColumn column5 = table.getColumnModel().getColumn(5); column5.setPreferredWidth(150);
+		TableColumn column0 = table.getColumnModel().getColumn(0);
+		column0.setPreferredWidth(40);
+		TableColumn column1 = table.getColumnModel().getColumn(1);
+		column1.setPreferredWidth(100);
+		TableColumn column5 = table.getColumnModel().getColumn(5);
+		column5.setPreferredWidth(150);
 
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(240, 48, 693, 191);
@@ -296,7 +297,7 @@ public class ManagedEmployee extends JFrame {
 		btnNewButton_1_2.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_1_2.setBounds(419, 260, 92, 36);
 		panel_2.add(btnNewButton_1_2);
-		
+
 		JButton btnNewButton_1_2_1 = new JButton("Tìm kiếm");
 		btnNewButton_1_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -307,12 +308,12 @@ public class ManagedEmployee extends JFrame {
 		btnNewButton_1_2_1.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_1_2_1.setBounds(556, 260, 118, 36);
 		panel_2.add(btnNewButton_1_2_1);
-		
+
 		JLabel lblNewLabel_4_4_1 = new JLabel("Email");
 		lblNewLabel_4_4_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_4_4_1.setBounds(351, 188, 137, 36);
 		panel_2.add(lblNewLabel_4_4_1);
-		
+
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
 		textField_5.setBounds(473, 192, 183, 36);
@@ -323,10 +324,10 @@ public class ManagedEmployee extends JFrame {
 		lblNewLabel_3.setBounds(240, 10, 208, 28);
 		contentPane.add(lblNewLabel_3);
 
-
 	}
+
 	public void addBook(Book b) {
 		DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
-		tableModel.addRow(new Object[] {"c1","c2","c3","c4","c5"});
+		tableModel.addRow(new Object[] { "c1", "c2", "c3", "c4", "c5" });
 	}
 }

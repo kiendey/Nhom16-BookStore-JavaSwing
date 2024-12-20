@@ -56,8 +56,20 @@ public class Book_DAO implements I_Book{
     }
 
     @Override
-    public Book selectByName(String name) {
-        return null;
+    public List<?> selectByName(String name) {
+    	try {
+            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+            if (sessionFactory != null) {
+                Session session = sessionFactory.openSession();
+                Transaction transaction = session.beginTransaction();
+                List<Book> list = session.createQuery("FROM Book WHERE name LIKE :name", Book.class) .setParameter("name", "%" + name + "%") .getResultList();
+                transaction.commit();
+                return list;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+       return null;
     }
 
     @Override
@@ -79,13 +91,39 @@ public class Book_DAO implements I_Book{
 
 	@Override
 	public boolean update(Book book) {
-		// TODO Auto-generated method stub
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        if (sessionFactory != null) {
+            try (Session session = sessionFactory.openSession()) {
+                Transaction transaction = session.beginTransaction();
+                session.merge(book);
+                transaction.commit();
+                return true;
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
 		return false;
 	}
 
 	@Override
 	public boolean delete(int id) {
-		// TODO Auto-generated method stub
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        if (sessionFactory != null) {
+            try (Session session = sessionFactory.openSession()) {
+                Transaction transaction = session.beginTransaction();
+                Book b = (Book) session.get(Book.class, id);
+                if (b!= null) {
+	                session.remove(b);
+	                transaction.commit();
+	                return true;
+                }
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
 		return false;
 	}
-}
+
+
+	}
+

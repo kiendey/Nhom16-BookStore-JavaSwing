@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import jakarta.persistence.Query;
+import model.Book;
 import model.I_Statitic;
 import model.PurchaseInvoice;
 import model.Statistic;
@@ -74,13 +75,36 @@ public class Statitic_DAO implements I_Statitic{
 
 	@Override
 	public boolean update(Statistic statistic) {
-		// TODO Auto-generated method stub
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        if (sessionFactory != null) {
+            try (Session session = sessionFactory.openSession()) {
+                Transaction transaction = session.beginTransaction();
+                session.merge(statistic);
+                transaction.commit();
+                return true;
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
 		return false;
 	}
 
 	@Override
 	public boolean delete(int id) {
-		// TODO Auto-generated method stub
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        if (sessionFactory != null) {
+            try (Session session = sessionFactory.openSession()) {
+                Transaction transaction = session.beginTransaction();
+                Statistic b = (Statistic) session.get(Statistic.class, id);
+                if (b!= null) {
+	                session.remove(b);
+	                transaction.commit();
+	                return true;
+                }
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
 		return false;
 	}
 }
