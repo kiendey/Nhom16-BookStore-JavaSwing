@@ -14,12 +14,18 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import java.awt.Toolkit;
 
 public class Menu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-
+    JLabel lblNewLabel = new JLabel("Màn hình chính");
+	JLabel lblQunLSch = new JLabel("Quản lý sách");
+	JLabel lblQunLNhn = new JLabel("Quản lý nhân viên");
+	JLabel lblQunLNhp = new JLabel("Quản lý nhập hàng");
+	JLabel lblQunLXut = new JLabel("Quản lý xuất hàng");
+	JLabel lblThngK = new JLabel("Thống kê");
+	JButton btnNewButton = new JButton("Log out");
 	/**
 	 * Launch the application.
 	 */
@@ -40,10 +46,11 @@ public class Menu extends JFrame {
 	 * Create the frame.
 	 */
 	public Menu() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Menu.class.getResource("/image/Itzikgur-My-Seven-Books-2.512.png")));
 		setTitle("Trang chủ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 966, 590);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -56,7 +63,7 @@ public class Menu extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel(" SunFlower");
-		lblNewLabel_1.setIcon(new ImageIcon(Menu.class.getResource("/image/sunflower.png")));
+		lblNewLabel_1.setIcon(new ImageIcon(Menu.class.getResource("/image/Iconshow-Agriculture-Sunflower.48.png")));
 		lblNewLabel_1.setForeground(new Color(248, 248, 255));
 		lblNewLabel_1.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		lblNewLabel_1.setBackground(new Color(255, 0, 0));
@@ -69,7 +76,7 @@ public class Menu extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Màn hình chính");
+
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -82,7 +89,7 @@ public class Menu extends JFrame {
 		panel.add(panel_1_1);
 		panel_1_1.setLayout(null);
 		
-		JLabel lblQunLSch = new JLabel("Quản lý sách");
+
 		lblQunLSch.setHorizontalAlignment(SwingConstants.CENTER);
 		lblQunLSch.setForeground(Color.WHITE);
 		lblQunLSch.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -95,7 +102,7 @@ public class Menu extends JFrame {
 		panel.add(panel_1_1_1);
 		panel_1_1_1.setLayout(null);
 		
-		JLabel lblQunLNhn = new JLabel("Quản lý nhân viên");
+
 		lblQunLNhn.setHorizontalAlignment(SwingConstants.CENTER);
 		lblQunLNhn.setForeground(Color.WHITE);
 		lblQunLNhn.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -108,7 +115,7 @@ public class Menu extends JFrame {
 		panel.add(panel_1_1_2);
 		panel_1_1_2.setLayout(null);
 		
-		JLabel lblQunLNhp = new JLabel("Quản lý nhập hàng");
+
 		lblQunLNhp.setHorizontalAlignment(SwingConstants.CENTER);
 		lblQunLNhp.setForeground(Color.WHITE);
 		lblQunLNhp.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -121,7 +128,7 @@ public class Menu extends JFrame {
 		panel_1_1_1_1.setBounds(20, 370, 209, 52);
 		panel.add(panel_1_1_1_1);
 		
-		JLabel lblQunLXut = new JLabel("Quản lý xuất hàng");
+
 		lblQunLXut.setHorizontalAlignment(SwingConstants.CENTER);
 		lblQunLXut.setForeground(Color.WHITE);
 		lblQunLXut.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -134,14 +141,14 @@ public class Menu extends JFrame {
 		panel_1_1_1_2.setBounds(20, 443, 209, 52);
 		panel.add(panel_1_1_1_2);
 		
-		JLabel lblThngK = new JLabel("Thống kê");
+
 		lblThngK.setHorizontalAlignment(SwingConstants.CENTER);
 		lblThngK.setForeground(Color.WHITE);
 		lblThngK.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		lblThngK.setBounds(10, 10, 189, 37);
 		panel_1_1_1_2.add(lblThngK);
 		
-		JButton btnNewButton = new JButton("Log out");
+
 		btnNewButton.setBackground(new Color(255, 51, 51));
 		btnNewButton.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		btnNewButton.setBounds(86, 516, 85, 21);
@@ -243,5 +250,26 @@ public class Menu extends JFrame {
 		panel_3.setBackground(Color.ORANGE);
 		panel_3.setBounds(246, 169, 685, 374);
 		contentPane.add(panel_3);
+	}
+	public  JLabel manHinhChinh() {
+		return lblNewLabel;
+	}
+	public JLabel quanLySach() {
+		return lblQunLSch;
+	}
+	public JLabel quanLyNhanVien() {
+		return lblQunLNhn;
+	}
+	public JLabel quanLyNhapHang() {
+		return lblQunLNhp;
+	}
+	public JLabel quanLyXuatHang() {
+		return lblQunLXut;
+	}
+	public JLabel thongKe() {
+		return lblThngK;
+	}
+	public JButton logOut() {
+		return btnNewButton;
 	}
 }

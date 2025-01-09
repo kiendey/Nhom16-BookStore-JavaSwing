@@ -23,7 +23,7 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField passwordField;
 	private JTextField textField;
-
+	JButton btnNewButton = new JButton("Đăng nhập");
 	/**
 	 * Launch the application.
 	 */
@@ -77,11 +77,11 @@ public class Login extends JFrame {
 		textField.setBounds(164, 84, 154, 19);
 		contentPane.add(textField);
 		textField.setColumns(10);
-		
-		JButton btnNewButton = new JButton("Đăng nhập");
+
+
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(rootPane, "Đăng nhập hành công với quyền Admin!");
+			public void actionPerformed(ActionEvent e){
+
 			}
 		});
 		btnNewButton.setFont(new Font("Segoe UI", Font.BOLD, 10));
@@ -95,6 +95,8 @@ public class Login extends JFrame {
 		btnNewButton_1.setBackground(Color.GREEN);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				textField.setText("");
+				passwordField.setText("");
 			}
 		});
 		btnNewButton_1.setBounds(255, 205, 85, 33);
@@ -103,5 +105,8 @@ public class Login extends JFrame {
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setBounds(391, 240, 45, 13);
 		contentPane.add(lblNewLabel_3);
+	}
+	public JButton dangNhap(){
+		return btnNewButton;
 	}
 }

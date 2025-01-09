@@ -47,6 +47,13 @@ public class ManagedStatitic extends JFrame {
 	private JTextField textFieldTenSach;
 	private JTextField textFieldSLTon;
 
+	JLabel lblNewLabel = new JLabel("Màn hình chính");
+	JLabel lblQunLSch = new JLabel("Quản lý sách");
+	JLabel lblQunLNhn = new JLabel("Quản lý nhân viên");
+	JLabel lblQunLNhp = new JLabel("Quản lý nhập hàng");
+	JLabel lblQunLXut = new JLabel("Quản lý xuất hàng");
+	JLabel lblThngK = new JLabel("Thống kê");
+	JButton btnNewButton = new JButton("Log out");
 	/**
 	 * Launch the application.
 	 */
@@ -96,7 +103,7 @@ public class ManagedStatitic extends JFrame {
 		panel_1.setBounds(20, 78, 209, 52);
 		panel.add(panel_1);
 
-		JLabel lblNewLabel = new JLabel("Màn hình chính");
+
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -109,7 +116,7 @@ public class ManagedStatitic extends JFrame {
 		panel_1_1.setBounds(20, 149, 212, 52);
 		panel.add(panel_1_1);
 
-		JLabel lblQunLSch = new JLabel("Quản lý sách");
+
 		lblQunLSch.setBackground(new Color(51, 153, 0));
 		lblQunLSch.setHorizontalAlignment(SwingConstants.CENTER);
 		lblQunLSch.setForeground(Color.WHITE);
@@ -123,7 +130,7 @@ public class ManagedStatitic extends JFrame {
 		panel_1_1_1.setBounds(20, 226, 209, 52);
 		panel.add(panel_1_1_1);
 
-		JLabel lblQunLNhn = new JLabel("Quản lý nhân viên");
+
 		lblQunLNhn.setBackground(new Color(102, 102, 255));
 		lblQunLNhn.setHorizontalAlignment(SwingConstants.CENTER);
 		lblQunLNhn.setForeground(Color.WHITE);
@@ -137,7 +144,7 @@ public class ManagedStatitic extends JFrame {
 		panel_1_1_2.setBounds(20, 299, 209, 52);
 		panel.add(panel_1_1_2);
 
-		JLabel lblQunLNhp = new JLabel("Quản lý nhập hàng");
+
 		lblQunLNhp.setHorizontalAlignment(SwingConstants.CENTER);
 		lblQunLNhp.setForeground(Color.WHITE);
 		lblQunLNhp.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -150,7 +157,7 @@ public class ManagedStatitic extends JFrame {
 		panel_1_1_1_1.setBounds(20, 370, 209, 52);
 		panel.add(panel_1_1_1_1);
 
-		JLabel lblQunLXut = new JLabel("Quản lý xuất hàng");
+
 		lblQunLXut.setHorizontalAlignment(SwingConstants.CENTER);
 		lblQunLXut.setForeground(Color.WHITE);
 		lblQunLXut.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -163,14 +170,14 @@ public class ManagedStatitic extends JFrame {
 		panel_1_1_1_2.setBounds(20, 443, 209, 52);
 		panel.add(panel_1_1_1_2);
 
-		JLabel lblThngK = new JLabel("Thống kê");
+
 		lblThngK.setHorizontalAlignment(SwingConstants.CENTER);
 		lblThngK.setForeground(Color.WHITE);
 		lblThngK.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		lblThngK.setBounds(10, 10, 189, 37);
 		panel_1_1_1_2.add(lblThngK);
 
-		JButton btnNewButton = new JButton("Log out");
+
 		btnNewButton.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		btnNewButton.setBackground(new Color(255, 51, 51));
 		btnNewButton.setBounds(86, 516, 85, 21);
@@ -361,8 +368,25 @@ public class ManagedStatitic extends JFrame {
 
 
 	}
-	public void addBook(Book b) {
-		DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
-		tableModel.addRow(new Object[] {"c1","c2","c3","c4","c5"});
+	public JLabel manHinhChinh() {
+		return lblNewLabel;
+	}
+	public JLabel quanLySach() {
+		return lblQunLSch;
+	}
+	public JLabel quanLyNhanVien() {
+		return lblQunLNhn;
+	}
+	public JLabel quanLyNhapHang() {
+		return lblQunLNhp;
+	}
+	public JLabel quanLyXuatHang() {
+		return lblQunLXut;
+	}
+	public JLabel thongKe() {
+		return lblThngK;
+	}
+	public JButton logOut() {
+		return btnNewButton;
 	}
 }
